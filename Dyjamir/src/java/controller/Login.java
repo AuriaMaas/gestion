@@ -78,9 +78,12 @@ public class Login extends HttpServlet {
             System.out.println(validar);
             
             if(validar) {
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getSession().setAttribute("Sesión", "Hola");
+                response.sendRedirect("home.jsp");
             } else {
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getSession().setAttribute("login", "Error");
+                response.sendRedirect("index.jsp");
+                
             }
             
         } catch (SQLException ex) {
